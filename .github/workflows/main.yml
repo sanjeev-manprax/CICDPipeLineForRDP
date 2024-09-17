@@ -13,12 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
  
-    - name: Install sshpass
-      run: sudo apt-get install sshpass
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRI_KEY }}
  
-    - name: Copy code to IIS server
+    - name: Deploy code to IIS server
       run: |
-        echo "Copying code to IIS server"
-        sshpass -p "${{ secrets.RDP_PASSWORD }}" scp -r ./* ${{ secrets.RDP_USER }}@${{ secrets.RDP_SERVER }}:/c/inetpub
-      env:
-        TZ: "Etc/UTC"
+        echo "Deploying code to IIS server"
+        scp -r ./* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/c/inetpub
