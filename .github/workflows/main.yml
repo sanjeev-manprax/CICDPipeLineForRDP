@@ -19,6 +19,6 @@ jobs:
     - name: Copy code to IIS server
       run: |
         echo "Copying code to IIS server"
-        sshpass -p "Matrix#@1998" scp -o StrictHostKeyChecking=no -r ./* admin_net@20.197.23.212:/C:/Users/admin_net/Desktop/Test
+        sshpass -p "Matrix#@1998" scp -o StrictHostKeyChecking=no -r ./* admin_net@20.193.150.115:/C:/Users/admin_net/Desktop/Test
       env:
         TZ: "Etc/UTC"
